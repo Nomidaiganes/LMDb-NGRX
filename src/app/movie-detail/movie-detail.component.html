@@ -1,0 +1,14 @@
+<div id="background">
+    <button mat-stroked-button (click)="goBack()">go back</button><br>
+
+    <mat-card>
+        <img mat-card-image src="../../assets/images/movie-covers/{{movie.img}}" alt="movie.name">
+        <mat-card-title>{{ movie.name }}</mat-card-title>
+        <mat-card-content>
+            <p>{{ movie.description }}</p>
+            <p>{{ movie.genres | genre }}</p>
+            <p>IMDb Rating: {{ movie.rate }}</p>
+            <p>Runtime: {{ movie.length }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

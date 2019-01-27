@@ -1,0 +1,28 @@
+<div id="background">
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Search" #searchInput>
+    </mat-form-field>
+  </form>
+  <label>Filter</label>
+  <button mat-stroked-button (click)="filterMovies('action')">Action</button>
+  <button mat-stroked-button (click)="filterMovies('biography')">Biography</button>
+  <button mat-stroked-button (click)="filterMovies('comedy')">Comedy</button>
+  <button mat-stroked-button (click)="filterMovies('crime')">Crime</button>
+  <button mat-stroked-button (click)="filterMovies('drama')">Drama</button>
+  <button mat-stroked-button (click)="filterMovies('history')">History</button>
+  <button mat-stroked-button (click)="filterMovies('mystery')">Mystery</button>
+  <button mat-stroked-button (click)="filterMovies('scifi')">Scifi</button>
+  <button mat-stroked-button (click)="filterMovies('sport')">Sport</button>
+  <button mat-stroked-button (click)="filterMovies('thriller')">Thriller</button>
+  <button mat-stroked-button color="warn" (click)="getMovies()"><i class="material-icons">
+    clear
+    </i> Reset Filter</button>
+
+  <div class="container">
+    <mat-card *ngFor="let movie of movies$" routerLink="/moviedetail/{{movie.id}}">
+      <mat-card-title>{{ movie.name }}</mat-card-title>
+      <img mat-card-image src="../../assets/images/movie-covers/{{movie.img}}" alt="movie.name">
+    </mat-card>
+  </div>
+</div>
