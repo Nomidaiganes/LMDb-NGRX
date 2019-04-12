@@ -12,6 +12,12 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { GenrePipe } from './genre.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducer } from './reducers/movieList.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { MovieEffects } from './effects/movie.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +29,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({ movies: reducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
+    EffectsModule.forRoot([MovieEffects]),
     BrowserAnimationsModule,
     AppRoutingModule,
     MatButtonModule,

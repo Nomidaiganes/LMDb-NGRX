@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { MovieDataService } from '../movie-data/movie-data.service';
-import { movies } from '../movie-data/movie.mock-data';
 import { Movie } from '../movie-data/movie';
 
 @Component({
@@ -17,12 +16,16 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private movieDataService: MovieDataService,
     private location: Location
   ) { }
 
   ngOnInit() {
     this.getMovie();
+    if(!this.movie) {
+      this.router.navigate(['/404']);
+    }
   }
 
   getMovie(): void {

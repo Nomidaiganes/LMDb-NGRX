@@ -10,20 +10,19 @@ import { GenreType } from './movie.model';
 })
 export class MovieDataService {
 
-  moviesData = movies;
-
   constructor() { }
 
   getMovies(searchtext: string): Observable<Movie[]> {
-    return of(this.moviesData.filter(movie => movie.name.toLowerCase().includes(searchtext.toLowerCase())));
+    return of(movies.filter(movie => movie.name.toLowerCase().includes(searchtext.toLowerCase())));
   }
 
   getMoviesByGenre(genre: GenreType): Observable<Movie[]> {
-    return of(this.moviesData.filter(movie => movie.genres.includes(genre)));
+    return of(movies.filter(movie => movie.genres.includes(genre)));
   }
 
-  getMovie(id: number): Observable<Movie> {
-    return of(this.moviesData.find(movie => movie.id === id));
+  getMovie(id: number): Observable<Movie | undefined> {
+    let movie$ = of(movies.find(movie => movie.id === id));
+    return movie$
   }
 
 }
